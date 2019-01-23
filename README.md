@@ -15,6 +15,7 @@ energy trend tested on node
 1. in bash
 
 > source activate py36
+
 > python tomerge.py
 
 2. run 'data2plot.m'
