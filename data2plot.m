@@ -2,20 +2,18 @@ clear;clc;close all;
 arr=strsplit(pwd,'\');
 filename=strcat(cell2mat(arr(end)),'.xlsx');
 [ref,temp]=xlsread(filename);
+I=zeros(size(ref));
 for i=1:length(ref)
     s=cell2mat(temp(i,1));
     s(isspace(s)) = [];
     char2asc2=abs(s);%×ªasc2
-    char2asc2(char2asc2==abs('V'))=[];%É¾³ý5
+    char2asc2(char2asc2==abs('V'))=[];%É¾³ýV
     s=char(char2asc2);
-    ref(i)=str2double(s);
-end
-I=zeros(size(ref));
-for i=1:length(ref)
+    ref(i)=str2double(s);    
     s=cell2mat(temp(i,2));
     s(isspace(s)) = [];
     char2asc2=abs(s);%×ªasc2
-    char2asc2(char2asc2==abs('A'))=[];%É¾³ý5
+    char2asc2(char2asc2==abs('A'))=[];%É¾³ýA
     s=char(char2asc2);
     I(i)=str2double(s);
 end
