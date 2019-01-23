@@ -44,12 +44,13 @@ ref=[ref remQper];
 figure('NumberTitle', 'off', 'Name', 'Q/V');
 plot(ref(:,1),remQper,'b-','LineWidth',1);
 hold on;
-title('剩余电量-电压关系');
-xlabel('电压/V');
-ylabel('剩余电量/%');
+ylim([0 105]);
+title('capacity-voltage');
+xlabel('Voltage/V');
+ylabel('Capacity/%');
 set(gca,'XDir','reverse')%对X方向反转
 % set(gca,'YDir','reverse')%对Y方向反转
-legend('7号电池×2');
+legend('AAA battery×2');
 grid on;
 hold off;
 
