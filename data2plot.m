@@ -1,30 +1,30 @@
 clear;clc;close all;
-% arr=strsplit(pwd,'\');
-% filename=strcat(cell2mat(arr(end)),'.xlsx');
-% [ref,temp]=xlsread(filename);
-% for i=1:length(ref)
-%     s=cell2mat(temp(i,1));
-%     s(isspace(s)) = [];
-%     char2asc2=abs(s);%×ªasc2
-%     char2asc2(char2asc2==abs('V'))=[];%É¾³ý5
-%     s=char(char2asc2);
-%     ref(i)=str2double(s);
-% end
-% I=zeros(size(ref));
-% for i=1:length(ref)
-%     s=cell2mat(temp(i,2));
-%     s(isspace(s)) = [];
-%     char2asc2=abs(s);%×ªasc2
-%     char2asc2(char2asc2==abs('A'))=[];%É¾³ý5
-%     s=char(char2asc2);
-%     I(i)=str2double(s);
-% end
-% Q=I;
-% for i=2:length(Q)
-%     Q(i)=Q(i)+Q(i-1);
-% end
-% ref=[ref I Q];
-% save(strcat(cell2mat(arr(end)),'.mat'), 'ref');clear;
+arr=strsplit(pwd,'\');
+filename=strcat(cell2mat(arr(end)),'.xlsx');
+[ref,temp]=xlsread(filename);
+for i=1:length(ref)
+    s=cell2mat(temp(i,1));
+    s(isspace(s)) = [];
+    char2asc2=abs(s);%×ªasc2
+    char2asc2(char2asc2==abs('V'))=[];%É¾³ý5
+    s=char(char2asc2);
+    ref(i)=str2double(s);
+end
+I=zeros(size(ref));
+for i=1:length(ref)
+    s=cell2mat(temp(i,2));
+    s(isspace(s)) = [];
+    char2asc2=abs(s);%×ªasc2
+    char2asc2(char2asc2==abs('A'))=[];%É¾³ý5
+    s=char(char2asc2);
+    I(i)=str2double(s);
+end
+Q=I;
+for i=2:length(Q)
+    Q(i)=Q(i)+Q(i-1);
+end
+ref=[ref I Q];
+save(strcat(cell2mat(arr(end)),'.mat'), 'ref');clear;
 
 arr=strsplit(pwd,'\');
 load(strcat(cell2mat(arr(end)),'.mat'));
