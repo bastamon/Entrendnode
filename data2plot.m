@@ -21,9 +21,16 @@ Q=I;
 for i=2:length(Q)
     Q(i)=Q(i)+Q(i-1);
 end
-ref=[ref I Q];
-save(strcat(cell2mat(arr(end)),'.mat'), 'ref');clear;
+remQper=flip(Q.*1e2./Q(end));
+ref=[ref I Q remQper];
+% 间隔点采样100个,已在mat中
+for a=100:-1:1
+    [D,I] = min(abs(a-remQper));
+    simple(a)=ref(I,1);
+end
+save(strcat(cell2mat(arr(end)),'.mat'), 'ref','simple');clear;
 
+% 数据已保存，以下内容可隐藏
 arr=strsplit(pwd,'\');
 load(strcat(cell2mat(arr(end)),'.mat'));
 figure('NumberTitle', 'off', 'Name', 'energytrend');
@@ -39,11 +46,12 @@ hold off;
 
 Q=ref(:,3);
 % consQper=Q.*1e2./Q(end);
-remQper=flip(Q.*1e2./Q(end));
-ref=[ref remQper];
-figure('NumberTitle', 'off', 'Name', 'Q/V');
+remQper=ref(:,4);
+figure('NumberTitle', 'off', 'Name', 'Q/V for Once');
 plot(ref(:,1),remQper,'b-','LineWidth',1);
 hold on;
+% 检查采样曲线
+% plot(simple,1:100,'m-');
 ylim([0 105]);
 title('capacity-voltage');
 xlabel('Voltage/V');
@@ -53,6 +61,3 @@ set(gca,'XDir','reverse')%对X方向反转
 legend('AAA battery×2');
 grid on;
 hold off;
-
-% 多次实验由于电压存在偏移用系数解决
-% 求和*系数
