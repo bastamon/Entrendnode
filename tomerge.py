@@ -31,7 +31,7 @@ def file_name(file_dir):
 
 
 def main():
-    srcfile=file_name(os.getcwd())
+    srcfile = file_name(os.getcwd())
     print(u'merge')
     dstfile = os.path.dirname(os.path.abspath(__file__)).split('\\')[-1] + u'.xlsx'
     assert not os.path.exists(dstfile), "file already existed"
