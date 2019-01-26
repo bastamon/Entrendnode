@@ -23,7 +23,7 @@ def savexls(src, dst):
 
 def file_name(file_dir):
     L = []
-    for root, dirs, files in os.walk(file_dir):
+    for root, _, files in os.walk(file_dir):
         for file in files:
             if os.path.splitext(file)[1] == '.xlsx':
                 L.append(os.path.join(root, file))
@@ -35,7 +35,7 @@ def main():
     print(u'merge')
     dstfile = os.path.dirname(os.path.abspath(__file__)).split('\\')[-1] + u'.xlsx'
     assert not os.path.exists(dstfile), "file already existed"
-    for i, x in enumerate(srcfile):
+    for _, x in enumerate(srcfile):
         savexls(x, dstfile)  # 尾插
     print(u'all done')
 
